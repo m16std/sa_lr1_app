@@ -1,0 +1,4 @@
+#Sun Feb 11 23:41:53 MSK 2024
+base.0=C\:\\Users\\vsmor\\sa_lr1_app\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
