@@ -46,11 +46,6 @@ class _DynamicListPageState extends State<DynamicListPage> {
               itemBuilder: (context, index) {
                 return ListTile(
                   tileColor: Colors.white24,
-                  leading: Text(index.toString(),
-                      style: const TextStyle(
-                          fontSize: 16,
-                          color: Colors.black87,
-                          fontWeight: FontWeight.normal)),
                   title: Column(
                     children: [
                       const VerticalDivider(
