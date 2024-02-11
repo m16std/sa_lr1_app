@@ -34,7 +34,7 @@ class _DynamicListPageState extends State<DynamicListPage> {
           const Padding(
             padding: EdgeInsets.all(20.0),
             child: Text(
-                'Введите вершины в которые можно непос­редственно попасть',
+                'Введите вершины в которые можно непос­редственно попасть из этой вершины',
                 style: TextStyle(
                     fontSize: 16,
                     color: Colors.black87,
@@ -45,35 +45,44 @@ class _DynamicListPageState extends State<DynamicListPage> {
               itemCount: _listItems.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  tileColor: Colors.white24,
-                  title: Column(
-                    children: [
-                      const VerticalDivider(
-                        color: Colors.black,
-                        thickness: 0.1,
-                        indent: 10,
-                        endIndent: 10,
+                  leading: Text(index.toString(),
+                      style: const TextStyle(
+                          fontSize: 16,
+                          color: Colors.black87,
+                          fontWeight: FontWeight.normal)),
+                  title: TextFormField(
+                    decoration: InputDecoration(
+                      //icon: Icon(Icons.person),
+                      hintText: 'Куда можно попасть',
+                      filled: true,
+                      fillColor: Colors.transparent,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
                       ),
-                      TextFormField(
-                          initialValue: _listItems[index],
-                          decoration: const InputDecoration(
-                            //icon: Icon(Icons.person),
-                            hintText:
-                                'Введите вершины в которые можно непос­редственно попасть',
-
-                            labelText: 'Вершины',
-                          ),
-                          onChanged: (value) {
-                            _listItems[index] = value;
-                          },
-                          style: const TextStyle(
-                              fontSize: 16,
-                              color: Colors.black87,
-                              fontWeight: FontWeight.normal)),
-                    ],
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide.none,
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: const BorderSide(color: Colors.greenAccent),
+                      ),
+                      errorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: const BorderSide(color: Colors.red),
+                      ),
+                    ),
+                    initialValue: _listItems[index],
+                    onChanged: (value) {
+                      _listItems[index] = value;
+                    },
+                    style: const TextStyle(
+                        fontSize: 14,
+                        color: Colors.black87,
+                        fontWeight: FontWeight.normal),
                   ),
                   trailing: IconButton(
-                    icon: Icon(CupertinoIcons.clear_thick),
+                    icon: const Icon(CupertinoIcons.clear_thick),
                     onPressed: () {
                       _removeItem(index);
                     },
