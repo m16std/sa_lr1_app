@@ -33,11 +33,6 @@ class MyApp extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        listTileTheme: ListTileThemeData(
-          iconColor: Colors.black45,
-          tileColor: Colors.black45,
-          selectedTileColor: Color.fromARGB(255, 0, 0, 0).withOpacity(0.2),
-        ),
         appBarTheme: const AppBarTheme(
             iconTheme: IconThemeData(
           color: Colors.black45,
@@ -46,7 +41,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       routes: {
         '/': (context) => HomePage(),
-        '/result': (context) => ResultPage(),
+        '/result': (context) => const ResultPage(),
       },
     );
   }

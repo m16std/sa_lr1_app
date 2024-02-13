@@ -1,37 +1,26 @@
 import 'package:sa_lr1_app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
-class ResultPage extends StatefulWidget {
+class ResultPage extends StatelessWidget {
   const ResultPage({super.key});
-
-  @override
-  State<ResultPage> createState() => _ResultPageState();
-}
-
-class _ResultPageState extends State<ResultPage> {
-  //final _coinsListBloc = CoinsListBloc(GetIt.I<AbstractCoinsRepository>());
-
-  @override
-  void initState() {
-    //_coinsListBloc.add(LoadCoinsList());
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
-        appBar: appBar(context),
-        body: resultBody());
-  }
-
-  Column resultBody() {
-    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      //searchField(),
-      const SizedBox(
-        height: 10,
+      appBar: AppBar(
+        title: const Text('Second Screen'),
       ),
-      //listField(_coinsListBloc),
-    ]);
+      body: Center(
+        child: ElevatedButton(
+          // Within the SecondScreen widget
+          onPressed: () {
+            // Navigate back to the first screen by popping the current route
+            // off the stack.
+            Navigator.pop(context);
+          },
+          child: const Text('Go back!'),
+        ),
+      ),
+    );
   }
 }
