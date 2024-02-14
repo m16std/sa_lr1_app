@@ -15,6 +15,17 @@ class _TreeViewPageState extends State<TreeViewPage> {
     return Scaffold(
         appBar: AppBar(
           title: const Text('Просмотр графа'),
+          leading: GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: Container(
+                margin: const EdgeInsets.all(10),
+                alignment: Alignment.center,
+                decoration:
+                    BoxDecoration(borderRadius: BorderRadius.circular(15)),
+                child: const Icon(Icons.arrow_back_ios)),
+          ),
         ),
         body: Column(
           mainAxisSize: MainAxisSize.max,
@@ -34,7 +45,7 @@ class _TreeViewPageState extends State<TreeViewPage> {
                     algorithm: FruchtermanReingoldAlgorithm(),
                     builder: (Node node) {
                       var a = node.key!.value as int;
-                      return rectangleWidget(a);
+                      return rectangleWidget(a + 1);
                     },
                   )),
             ),

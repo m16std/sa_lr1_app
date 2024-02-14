@@ -54,13 +54,14 @@ class _DynamicListPageState extends State<DynamicListPage> {
                 return Padding(
                   padding: const EdgeInsets.only(left: 9, right: 9, bottom: 10),
                   child: ListTile(
-                    tileColor: Color.fromARGB(31, 163, 162, 177),
+                    tileColor: const Color.fromARGB(31, 163, 162, 177),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
                     ),
                     leading: CircleAvatar(
-                        backgroundColor: Color.fromARGB(255, 196, 194, 235),
-                        child: Text(index.toString(),
+                        backgroundColor:
+                            const Color.fromARGB(255, 196, 194, 235),
+                        child: Text((index + 1).toString(),
                             style: const TextStyle(
                                 fontSize: 16,
                                 color: Color.fromARGB(255, 0, 0, 0),
@@ -164,6 +165,12 @@ class _DynamicListPageState extends State<DynamicListPage> {
       print(newListOfincidence);
       if (newListOfincidence.isEmpty) {
         return;
+      }
+
+      for (int j = 0; j < newListOfincidence.length; j++) {
+        for (int i = 0; i < newListOfincidence[j].length; i++) {
+          newListOfincidence[j][i] -= 1;
+        }
       }
 
       List<List<int>> newAdjacencyMatrix = List.generate(

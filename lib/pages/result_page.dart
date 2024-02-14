@@ -55,7 +55,7 @@ class _ResultPageState extends State<ResultPage> {
       body: ListView(scrollDirection: Axis.horizontal, children: [
         Center(
           child: Container(
-            width: widget.adjacencyMatrix!.length * 50,
+            width: widget.adjacencyMatrix!.length * 45,
             height: 1000,
             child: ListView(
               scrollDirection: Axis.vertical,
@@ -123,7 +123,7 @@ class _ResultPageState extends State<ResultPage> {
     List<DataColumn> columns = [];
     columns.add(const DataColumn(label: Text(' ')));
     for (int i = 0; i < widget.adjacencyMatrix!.first.length; i++) {
-      columns.add(DataColumn(label: Text(i.toString())));
+      columns.add(DataColumn(label: Text((i + 1).toString())));
     }
     return columns;
   }
