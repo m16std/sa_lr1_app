@@ -78,6 +78,7 @@ class _TreeViewPageState extends State<TreeViewPage> {
       for (int j = 0; j < widget.adjacencyMatrix![i].length; j++) {
         if (widget.adjacencyMatrix![i][j] == 1) {
           // Добавляем ребро от i-й вершины к j-й вершине
+          if (i == j) continue;
           graph.addEdge(ListNode[i], ListNode[j]);
         }
       }

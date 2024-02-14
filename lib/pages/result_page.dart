@@ -18,6 +18,8 @@ class _ResultPageState extends State<ResultPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+          scrolledUnderElevation: 0.0,
+          backgroundColor: Colors.white,
           title: Center(child: const Text('Полученные матрицы')),
           leading: GestureDetector(
             onTap: () {
@@ -50,68 +52,32 @@ class _ResultPageState extends State<ResultPage> {
                   child: const Icon(Icons.arrow_forward_ios)),
             ),
           ]),
-      body: Column(
-        children: [
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: [
-                  const Text('Матрица смежности'),
-                  DataTable(
-                    columns: _a_buildColumns(),
-                    rows: _a_buildRows(),
-                  ),
-                  const Text('Матрица инцидентности'),
-                  DataTable(
-                    columns: _i_buildColumns(),
-                    rows: _i_buildRows(),
-                  ),
-                ],
-              ),
+      body: ListView(scrollDirection: Axis.horizontal, children: [
+        Center(
+          child: Container(
+            width: widget.adjacencyMatrix!.length * 50,
+            height: 1000,
+            child: ListView(
+              scrollDirection: Axis.vertical,
+              children: [
+                Center(child: const Text('Матрица смежности')),
+                DataTable(
+                  columns: _a_buildColumns(),
+                  rows: _a_buildRows(),
+                  columnSpacing: 0.0,
+                ),
+                Center(child: const Text('Матрица инцидентности')),
+                DataTable(
+                  columns: _i_buildColumns(),
+                  rows: _i_buildRows(),
+                  columnSpacing: 0.0,
+                ),
+              ],
             ),
           ),
-        ],
-      ),
+        ),
+      ]),
     );
-  }
-
-  Widget rectangleWidget(int a) {
-    return InkWell(
-      child: Container(
-          width: 30,
-          height: 30,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            boxShadow: [
-              BoxShadow(color: Colors.blue, spreadRadius: 1),
-            ],
-          ),
-          child: Center(child: Text('$a'))),
-    );
-  }
-
-  Graph buildGraph() {
-    final Graph graph = Graph();
-
-    // Создаем вершины
-    for (int i = 0; i < widget.adjacencyMatrix!.length; i++) {
-      final Node node = Node.Id(i);
-      graph.addNode(node);
-    }
-
-    // Создаем ребра на основе таблицы смежности
-    for (int i = 0; i < widget.adjacencyMatrix!.length; i++) {
-      for (int j = 0; j < widget.adjacencyMatrix![i].length; j++) {
-        if (widget.adjacencyMatrix![i][j] == 1) {
-          // Добавляем ребро от i-й вершины к j-й вершине
-          graph.addEdge(Node.Id(i), Node.Id(j));
-        }
-      }
-    }
-
-    return graph;
   }
 
   // Создание столбцов таблицы

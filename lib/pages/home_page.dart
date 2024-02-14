@@ -29,18 +29,23 @@ class _DynamicListPageState extends State<DynamicListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        scrolledUnderElevation: 0.0,
+        backgroundColor: Colors.white,
         title: const Text('Множество правых инциденций'),
       ),
       body: Column(
         children: <Widget>[
-          const Padding(
-            padding: EdgeInsets.all(20.0),
-            child: Text(
-                'Введите вершины в которые можно непос­редственно попасть из этой вершины',
-                style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.black87,
-                    fontWeight: FontWeight.normal)),
+          Container(
+            color: Colors.white,
+            child: const Padding(
+              padding: EdgeInsets.all(20.0),
+              child: Text(
+                  'Введите вершины в которые можно непос­редственно попасть из этой вершины',
+                  style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.black87,
+                      fontWeight: FontWeight.normal)),
+            ),
           ),
           Expanded(
             child: ListView.builder(
