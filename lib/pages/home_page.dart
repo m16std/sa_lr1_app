@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:sa_lr1_app/pages/result_page.dart';
 import 'package:sa_lr1_app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -128,35 +129,83 @@ class _DynamicListPageState extends State<DynamicListPage> {
 
   void _removeItem() {
     setState(() {
-      try {
+      if (_listItems.isNotEmpty) {
         _listItems.removeAt(_listItems.length - 1);
-      } catch (e) {}
+      }
     });
   }
 
   List<int> stringToList(String input) {
-    // Разбиваем строку на отдельные числа с помощью метода split()
     List<String> numbersAsString = input.split(' ');
-
-    // Преобразуем каждую строку с числом в целое число с помощью метода map()
     List<int> numbers = numbersAsString.map((str) => int.parse(str)).toList();
-
     return numbers;
   }
 
   void _compute(BuildContext context) {
     try {
-      _listItems.removeAt(0);
-
       List<String> savedList = List<String>.from(_listItems);
-      print(savedList);
-      List<List<int>> matrix = List.generate(
+      //print(savedList);
+      List<List<int>> newListOfincidence = List.generate(
           savedList.length, (_) => List<int>.filled(savedList.length, 0));
+
       for (int i = 0; i < savedList.length; i++) {
-        matrix[i] = stringToList(savedList[i]);
+        if (savedList[i].isEmpty) {
+          print('suka');
+          newListOfincidence[i] = List<int>.empty();
+        } else {
+          newListOfincidence[i] = stringToList(savedList[i]);
+        }
       }
-      print(matrix);
+      print(newListOfincidence);
+      if (newListOfincidence.isEmpty) {
+        return;
+      }
+
+      List<List<int>> newAdjacencyMatrix = List.generate(
+          savedList.length, (_) => List<int>.filled(savedList.length, 0));
+
+      for (int j = 0; j < newListOfincidence.length; j++) {
+        for (int i = 0; i < newListOfincidence[j].length; i++) {
+          if (newListOfincidence[j][i] < newListOfincidence.length)
+            newAdjacencyMatrix[j][newListOfincidence[j][i]] = 1;
+        }
+      }
+
+      int arc_count = 0;
+
+      for (int j = 0; j < newListOfincidence.length; j++) {
+        for (int i = 0; i < newListOfincidence[j].length; i++) {
+          arc_count += 1;
+        }
+      }
+
+      print(arc_count);
+
+      List<List<int>> newIncidenceMatrix = List.generate(
+          savedList.length, (_) => List<int>.filled(arc_count, 0));
+
+      int arc_num = 0;
+
+      for (int j = 0; j < newListOfincidence.length; j++) {
+        for (int i = 0; i < newListOfincidence[j].length; i++) {
+          if (newListOfincidence[j][i] < newListOfincidence.length) {
+            newIncidenceMatrix[newListOfincidence[j][i]][arc_num] = -1;
+            newIncidenceMatrix[j][arc_num] = 1;
+            if (newListOfincidence[j][i] == j) {
+              newIncidenceMatrix[j][arc_num] = 2;
+            }
+            arc_num += 1;
+          }
+        }
+      }
+
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => ResultPage(
+              adjacencyMatrix: newAdjacencyMatrix,
+              incidenceMatrix: newIncidenceMatrix),
+        ),
+      );
     } catch (e) {}
-    //Navigator.of(context).pushNamed( '/result');
   }
 }
