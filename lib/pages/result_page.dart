@@ -52,31 +52,27 @@ class _ResultPageState extends State<ResultPage> {
                   child: const Icon(Icons.arrow_forward_ios)),
             ),
           ]),
-      body: ListView(scrollDirection: Axis.horizontal, children: [
-        Center(
-          child: Container(
-            width: widget.adjacencyMatrix!.length * 45,
-            height: 1000,
-            child: ListView(
-              scrollDirection: Axis.vertical,
-              children: [
-                Center(child: const Text('Матрица смежности')),
-                DataTable(
-                  columns: _a_buildColumns(),
-                  rows: _a_buildRows(),
-                  columnSpacing: 0.0,
-                ),
-                Center(child: const Text('Матрица инцидентности')),
-                DataTable(
-                  columns: _i_buildColumns(),
-                  rows: _i_buildRows(),
-                  columnSpacing: 0.0,
-                ),
-              ],
+      body: Container(
+        //width: widget.adjacencyMatrix!.length * 55,
+        height: 1000,
+        child: ListView(
+          scrollDirection: Axis.vertical,
+          children: [
+            Center(child: const Text('Матрица смежности')),
+            DataTable(
+              columns: _a_buildColumns(),
+              rows: _a_buildRows(),
+              columnSpacing: 0.0,
             ),
-          ),
+            Center(child: const Text('Матрица инцидентности')),
+            DataTable(
+              columns: _i_buildColumns(),
+              rows: _i_buildRows(),
+              columnSpacing: 0.0,
+            ),
+          ],
         ),
-      ]),
+      ),
     );
   }
 

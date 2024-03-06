@@ -20,7 +20,7 @@ class _TreeViewPageState extends State<TreeViewPage> {
               Navigator.pop(context);
             },
             child: Container(
-                margin: const EdgeInsets.all(10),
+                //margin: const EdgeInsets.all(10),
                 alignment: Alignment.center,
                 decoration:
                     BoxDecoration(borderRadius: BorderRadius.circular(15)),
@@ -32,10 +32,10 @@ class _TreeViewPageState extends State<TreeViewPage> {
           children: [
             Expanded(
               child: InteractiveViewer(
-                  constrained: false,
+                  //constrained: false,
                   //boundaryMargin: EdgeInsets.all(10),
-                  minScale: 0.01,
-                  maxScale: 5.6,
+                  minScale: 0.1,
+                  maxScale: 10.0,
                   child: GraphView(
                     graph: graph,
                     paint: Paint()

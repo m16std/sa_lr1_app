@@ -40,7 +40,7 @@ class _DynamicListPageState extends State<DynamicListPage> {
             child: const Padding(
               padding: EdgeInsets.all(20.0),
               child: Text(
-                  'Введите вершины в которые можно непос­редственно попасть из этой вершины',
+                  'Введите вершины в которые можно \nнепос­редственно попасть из этой вершины',
                   style: TextStyle(
                       fontSize: 16,
                       color: Colors.black87,
